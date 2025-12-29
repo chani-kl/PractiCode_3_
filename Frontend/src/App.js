@@ -6,15 +6,20 @@ import "./App.css";
 function App() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    !!localStorage.getItem("token")
-  );
+  // const [isLoggedIn, setIsLoggedIn] = useState(
+  //   !!localStorage.getItem("token")
+  // );
+
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     loadTodos();
+  //   }
+  // }, [isLoggedIn]);
 
   useEffect(() => {
-    if (isLoggedIn) {
-      loadTodos();
-    }
-  }, [isLoggedIn]);
+  loadTodos();
+}, []);
+
 
   const loadTodos = async () => {
     const data = await todoService.getTasks();
@@ -40,9 +45,9 @@ function App() {
     setTodos(todos.map(t => t.id === updated.id ? updated : t));
   };
 
-  if (!isLoggedIn) {
-    return <Login onLogin={() => setIsLoggedIn(true)} />;
-  }
+  // if (!isLoggedIn) {
+  //   return <Login onLogin={() => setIsLoggedIn(true)} />;
+  // }
 
   return (
     <div className="todo-container">
