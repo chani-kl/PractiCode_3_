@@ -89,6 +89,8 @@ app.MapDelete("/items/{id}", async (int id, ToDoDbContext db) =>
     await db.SaveChangesAsync();
     return Results.NoContent();
 });
+app.MapGet("/healthz", () => Results.Ok("OK"));
+
 // app.MapPost("/register", async (User user, ToDoDbContext db) =>
 // {
 //     user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
